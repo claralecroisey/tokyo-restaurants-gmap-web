@@ -1,13 +1,14 @@
-import { useEffect, useRef, useState } from "react";
-import { useDeepCompareEffectForMaps } from "../hooks/useDeepCompareEffectForMaps";
+import React, { useEffect, useRef, useState } from 'react';
+import { useDeepCompareEffectForMaps } from '../hooks/useDeepCompareEffectForMaps';
 
 interface MapProps extends google.maps.MapOptions {
   style: { [key: string]: string };
   onClick?: (e: google.maps.MapMouseEvent) => void;
   onIdle?: (map: google.maps.Map) => void;
+  children: React.ReactNode;
 }
 
-export function Map({ style, ...options }: MapProps) {
+export function Map({ style, children, ...options }: MapProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
 
@@ -28,6 +29,13 @@ export function Map({ style, ...options }: MapProps) {
   return (
     <>
       <div ref={ref} style={style} />
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          // set the map prop on the child component
+          return React.cloneElement(child, { ...child.props, map });
+        }
+        return child;
+      })}
     </>
   );
 }
