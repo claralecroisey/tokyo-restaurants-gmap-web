@@ -1,4 +1,4 @@
-# Frontend part of small Google Maps implementation
+# Tokyo restaurants Google maps display - Web
 
 ### About
 
