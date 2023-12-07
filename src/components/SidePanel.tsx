@@ -13,7 +13,7 @@ export function SidePanel({ title, onClose, children }: SidePanelProps) {
         <XMarkIcon className="w-6 h-6" />
       </a>
       <h1 className="font-bold text-xl">{title}</h1>
-      {children}
+      <div className="pt-4">{children}</div>
     </div>
   );
 }

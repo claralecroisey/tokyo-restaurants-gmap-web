@@ -33,15 +33,17 @@ export function MapPage() {
   return (
     <Wrapper apiKey={import.meta.env.VITE_GOOGLE_API_KEY} render={render}>
       <div className="w-screen h-screen flex flex-col justify-center items-center">
-        <h1 className="font-bold text-2xl text-slate-400 mb-12">Tokyo restaurants</h1>
+        <h1 className="font-bold text-2xl text-slate-400 my-12">Tokyo restaurants</h1>
         <div className="w-full h-full flex">
           {selectedRestaurant && (
             <div className="w-2/5">
               <SidePanel
                 title={selectedRestaurant.displayName.text}
                 onClose={() => setSelectedRestaurant(null)}>
-                <p>{selectedRestaurant.formattedAddress}</p>
-                <p>{selectedRestaurant.nationalPhoneNumber}</p>
+                <div className="space-y-2">
+                  <p>{selectedRestaurant.formattedAddress}</p>
+                  <p>{selectedRestaurant.nationalPhoneNumber}</p>
+                </div>
               </SidePanel>
             </div>
           )}
