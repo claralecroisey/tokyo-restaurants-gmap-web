@@ -10,6 +10,8 @@ const render = (status: Status) => {
 
 const INITIAL_CENTER = { lat: 35.709026, lng: 139.731992 };
 const INITIAL_ZOOM = 13;
+const ICON_URL =
+  'https://www.google.com/maps/vt/icon/name=assets/icons/poi/tactile/pinlet_outline_v4-2-medium.png,assets/icons/poi/tactile/pinlet_v4-2-medium.png,assets/icons/poi/quantum/pinlet/restaurant_pinlet-2-medium.png&highlight=c5221f,ea4335,ffffff';
 
 export function MapPage() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
@@ -42,6 +44,9 @@ export function MapPage() {
             position={{
               lat: latitude,
               lng: longitude
+            }}
+            icon={{
+              url: ICON_URL
             }}
           />
         ))}
