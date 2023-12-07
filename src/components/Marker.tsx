@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-export function Marker(options: google.maps.MarkerOptions) {
+interface MarkerProps extends google.maps.MarkerOptions {
+  onClick?: (e: google.maps.MapMouseEvent) => void;
+}
+
+export function Marker({ onClick, ...options }: MarkerProps) {
   const [marker, setMarker] = useState<google.maps.Marker>();
 
   useEffect(() => {
@@ -19,8 +23,12 @@ export function Marker(options: google.maps.MarkerOptions) {
   useEffect(() => {
     if (marker) {
       marker.setOptions(options);
+      if (onClick) {
+        google.maps.event.clearListeners(marker, 'click');
+        marker.addListener('click', onClick);
+      }
     }
-  }, [marker, options]);
+  }, [marker, options, onClick]);
 
   return null;
 }

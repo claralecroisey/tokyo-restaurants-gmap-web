@@ -10,4 +10,6 @@ export type Restaurant = {
     latitude: number;
     longitude: number;
   };
+  formattedAddress: string;
+  nationalPhoneNumber: string;
 };
